@@ -19,12 +19,12 @@ const edit = function () {
     price: price.value,
   };
 
-  if (canBeAddProduct(newProduct.name)) {
-    console.log(canBeAddProduct("boolean", newProduct.name));
+  // if (canBeAddProduct(newProduct.name)) {
+  //   console.log(canBeAddProduct("boolean", newProduct.name));
     addProduct(newProduct);
-  } else {
-    alert("Product already exists");
-  }
+  // } else {
+  //   alert("Product already exists");
+  // }
 };
 
 const addProduct = function (product) {
@@ -53,31 +53,31 @@ form.addEventListener("submit", (e) => {
   edit();
 });
 
-let listProducts = [];
+// let listProducts = [];
 
-const getProducts = function () {
-  return fetch(URL, {
-    headers: HEADERS_AUTHORIZATION,
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        // throw new Error("Something went wrong");
-      }
-    })
-    .then((products) => {
-      products.forEach((el) => {
-        return listProducts.push(el.name);
-      });
-    })
-    .catch((error) => {
-      console.log("get err", error);
-    });
-};
+// const getProducts = function () {
+//   return fetch(URL, {
+//     headers: HEADERS_AUTHORIZATION,
+//   })
+//     .then((response) => {
+//       if (response.ok) {
+//         return response.json();
+//       } else {
+//         // throw new Error("Something went wrong");
+//       }
+//     })
+//     .then((products) => {
+//       products.forEach((el) => {
+//         return listProducts.push(el.name);
+//       });
+//     })
+//     .catch((error) => {
+//       console.log("get err", error);
+//     });
+// };
 
-getProducts().then(() => console.log("listProducts", listProducts));
+// getProducts().then(() => console.log("listProducts", listProducts));
 
-const canBeAddProduct = function (name) {
-  return listProducts.includes(name) ? false : true;
-};
+// const canBeAddProduct = function (name) {
+//   return listProducts.includes(name) ? false : true;
+// };
