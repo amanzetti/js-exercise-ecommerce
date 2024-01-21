@@ -1,6 +1,6 @@
 import { getProductsAPI } from "../data/api/get-products.js";
 
-const cardComponet = (product) => {
+const cardComponet = (product, pushDetails) => {
   const row = document.getElementById("product-row");
   const newCol = document.createElement("div");
   const card = document.createElement("div");
@@ -15,7 +15,7 @@ const cardComponet = (product) => {
             this.src='https://via.placeholder.com/300x200'" 
             class="bd-placeholder-img card-img-top"/>
         <div class="card-body">
-            <h3>${product.nome}</h3>
+            <h3>${product.name}</h3>
             <h5 class="card-title">${product.brand}</h5>
             <p class="card-text">${product.description}</p>
         </div>
@@ -26,7 +26,7 @@ const cardComponet = (product) => {
                     id="view-button"
                     type="button"
                     class="btn btn-info">
-                    <a class="text-decoration-none text-white" href="./details.html?productID=${product.id}">
+                    <a class="text-decoration-none text-white" href="${pushDetails}">
                         Anteprima</a>
                 </button>   
             </div>
@@ -39,7 +39,13 @@ const createProductCard = async () => {
 
   if (listProducts && listProducts.length > 0) {
       listProducts.forEach((product) => {
-      cardComponet(product);
+        
+        var queryString = Object.keys(product).map(function(key) {
+            return key + '=' + encodeURIComponent(product[key]);
+        }).join('&');
+          
+      const pushDetails = `./details.html?${queryString} `;
+      cardComponet(product, pushDetails);
     });
   } else {
     console.log("No products found");

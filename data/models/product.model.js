@@ -23,7 +23,7 @@ export default class Product {
     this.updatedAt = updatedAt;
   }
 
-    static fromJson(json) {
+  static fromJson(json) {
     const {
       _id,
       __v,
@@ -51,7 +51,7 @@ export default class Product {
     );
   }
 
-  toJson() {
+  static toJson() {
     return {
       _id: this._id,
       __v: this.__v,
@@ -64,5 +64,9 @@ export default class Product {
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
     };
+  }
+
+  static listKey () {
+      return Object.keys(this.toJson());
   }
 }
